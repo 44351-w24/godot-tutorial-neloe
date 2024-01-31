@@ -17,12 +17,14 @@ func _process(delta):
 func game_over():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
-	
+	$Music.stop()
+	$DeathSound.play()
 	$HUD.show_game_over()
 
 func new_game():
 	score = 0
 	get_tree().call_group("mobs", "queue_free")
+	$Music.play()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	$Player.start($StartPosition.position)
